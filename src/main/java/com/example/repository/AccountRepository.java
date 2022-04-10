@@ -2,7 +2,7 @@ package com.example.repository;
 
 import com.example.entity.Account;
 import com.example.entity.TDetails;
-import java.util.List;
+import java.util.List; 
 import com.example.entity.AccDetails;
 
 public interface AccountRepository {

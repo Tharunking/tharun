@@ -19,8 +19,7 @@ public class App {
 		TxrService txrService = new TxrServiceImpl(accountRepository);
 		Scanner input = new Scanner(System.in);
 		while(true)
-		{
-			
+		{	
 		System.out.println("\nSelect 1 for account creation");
 		System.out.println("Select 2 for money transfer");
 		System.out.println("Select 3 for account details");
@@ -34,11 +33,7 @@ public class App {
 		if(option!=0) {
 		switch(option) {
 		case 1:{
-		
 		AccountRepository accRepository = new JdbcAccountRepository(); // a.k.a D.A.O
-		/*
-		 * System.out.println("Enter id"); String id0 = input.next();
-		 */
 		System.out.println("Enter Name");
 		String name0 = input.next();
 		System.out.println("Enter phone");
@@ -48,7 +43,6 @@ public class App {
 		System.out.println("Enter opening balance");
 		double balance0 = input.nextDouble();
 		AccDetails accdetails = new AccDetails(name0,phone,address0,balance0);
-
 		accRepository.save(accdetails);
 		break;
 		}
@@ -66,16 +60,14 @@ public class App {
 		accRepository.tsave(tdetails);
 		}
 		break;
-	}
-
+		}
 		case 3:
 		{
 			System.out.println("Enter Account id (0 For all account )");
 			int n1=input.nextInt();
-			accountRepository.getAccDetails(n1)
-		.forEach(accdetails->System.out.println(accdetails));
+			accountRepository.getAccDetails(n1).forEach(accdetails->System.out.println(accdetails));
 			break;
-	}
+		}
 		case 4:
 		{
 			System.out.println("Enter Account id");
@@ -85,27 +77,31 @@ public class App {
 		}
 		case 5:{
 			System.out.println("Enter Account id)");
+			
+			
+			
+			
+			
+			
+			
+			
 			int n1=input.nextInt();
 			accountRepository.delete(n1);
 			break;
-			
 		}
 		case 6:{
 			System.out.println(accountRepository.countAcc());
 			break;
 		}
-
 		case 7:{
 			accountRepository.getTransfer().forEach(tdetails->System.out.println(tdetails));
 			break;
 		}
 		case 8:{
 			System.out.println(accountRepository.count());
-			break;
-		
-	}
-
-}
+			break;	
+		}
+		}
 		}
 		else {
 			break;

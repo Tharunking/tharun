@@ -224,7 +224,7 @@ public class JdbcAccountRepository implements AccountRepository {
 		Connection con = null;
 		try {
 			con = FirstConnection.getConnection();
-			String sql = "select count(*) from accountdetails";
+			String sql = "select count(*) from accountdetails;";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
@@ -253,7 +253,7 @@ public class JdbcAccountRepository implements AccountRepository {
 	try {
 		con = FirstConnection.getConnection();
 
-		String sql="select * from trans t;";
+		String sql="select * from trans;";
 		
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -286,7 +286,7 @@ public class JdbcAccountRepository implements AccountRepository {
 		Connection con = null;
 		try {
 			con = FirstConnection.getConnection();
-			String sql = "insert into trans (fromid,toid,transamount,date_time) values (?,?,?,?)";
+			String sql = "insert into trans (fromid,toid,transamount,date) values (?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			Date utilDate = new Date();
@@ -295,6 +295,7 @@ public class JdbcAccountRepository implements AccountRepository {
 			ps.setString(2, tdetails.getToid());
 			ps.setDouble(3, tdetails.getTransamont());
 			ps.setDate(4, new java.sql.Date(utilDate.getTime()));
+			//ps.setDate(4, new java.sql.Date(utilDate.getTime()));
 
 			int rowCount = ps.executeUpdate();
 			if (rowCount == 1) {
@@ -319,7 +320,7 @@ public class JdbcAccountRepository implements AccountRepository {
 			String sql = "delete from accountdetails where id=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
-			// step-4 : excute jdbc-statements & process result-set
+			// step-4 : execute jdbc-statements & process result-set
 			int rowCount = ps.executeUpdate();
 			if (rowCount == 1) {
 				System.out.println("Account deleted.");
